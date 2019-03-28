@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import store from "./store";
 
+import Home from "./components/Home";
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +14,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             <div>Hello</div>
+            <Route exact path="/" component={Home} />
           </div>
         </BrowserRouter>
       </Provider>
