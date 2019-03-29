@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
 
-import Movie from "./Movie";
+import { NavLink } from "react-router-dom";
+
+import Movie from "./Item";
 
 import { connect } from "react-redux";
 import { getMovies } from "../actions/movieActions";
+import { getPeople } from "../actions/peopleActions";
+import { getTv } from "../actions/tvActions";
 import PropTypes from "prop-types";
 
 class Home extends Component {
@@ -16,43 +19,47 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    // axios
-    //   .get(
-    //     "https://api.themoviedb.org/3/trending/movie/week?api_key=943d003becc08df50bf054b11efaccb1"
-    //   )
-    //   .then(res => {
-    //     console.log("this is response", res);
-    //     this.setState({ movies: res.data.results });
-    //   });
     this.props.getMovies();
+    this.props.getPeople();
+    this.props.getTv();
   }
 
   render() {
-    console.log(this.state);
-    console.log("this.props is", this.props);
+    // console.log(this.state);
+    // console.log("this.props is", this.props);
     return (
       <div>
         <div>this is homepage</div>
-        <div>
-          {this.props.movies.map(movie => (
-            <Movie key={movie.original_title} movie={movie.original_title} />
-          ))}
-        </div>
+        <NavLink
+          to={{ pathname: "/listPage", state: { identifier: "movies" } }}
+        >
+          Movies
+        </NavLink>
+        <NavLink to={{ pathname: "/listPage", state: { identifier: "tv" } }}>
+          TV
+        </NavLink>
+        <NavLink
+          to={{ pathname: "/listPage", state: { identifier: "people" } }}
+        >
+          People
+        </NavLink>
       </div>
     );
   }
 }
 
 Home.propTypes = {
-  getMovies: PropTypes.func.isRequired
+  // getMovies: PropTypes.func.isRequired
   // movies: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  movies: state.movies.movies
+  movies: state.movies.movies,
+  people: state.people.people,
+  tv: state.tv.tv
 });
 
 export default connect(
   mapStateToProps,
-  { getMovies }
+  { getMovies, getPeople, getTv }
 )(Home);
