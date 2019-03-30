@@ -36,6 +36,7 @@ app.use("/tv", require("./routes/tv"));
 app.use("/login", require("./routes/login"));
 app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/users"));
+app.use("/favourites", require("./routes/favourites"));
 
 const port = process.env.PORT || 5000;
 

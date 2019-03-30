@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import SearchMovies from "./components/SearchMovies";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Favourites from "./components/Favourites";
 
 import { loadUser } from "./actions/authActions";
 
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path="/searchMovies" component={SearchMovies} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/favourites" component={Favourites} />
           </div>
         </BrowserRouter>
       </Provider>

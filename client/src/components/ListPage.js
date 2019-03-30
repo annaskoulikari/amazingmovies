@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import Item from "./Item";
+import MovieItem from "./MovieItem";
 
 class ListPage extends Component {
   constructor(props) {
@@ -18,6 +19,15 @@ class ListPage extends Component {
     this.setState({ identifier: identifier });
   }
   render() {
+    // const {
+    //   id,
+    //   backdrop_path,
+    //   original_title,
+    //   overview,
+    //   release_date
+    // } = this.props.movies;
+    // console.log("let's see if destructuring worked", original_title);
+
     return (
       <div>
         I am the listpage{" "}
@@ -31,7 +41,14 @@ class ListPage extends Component {
                 <Item key={item.original_title} item={item.original_title} />
               ))
             : this.props.movies.map(item => (
-                <Item key={item.original_title} item={item.original_title} />
+                <MovieItem
+                  key={item.original_title}
+                  itemTitle={item.title}
+                  itemID={item.id}
+                  itemOverview={item.overview}
+                  itemReleaseDate={item.release_date}
+                  itemBackdropPath={item.backdrop_path}
+                />
               ))}
         </div>
       </div>

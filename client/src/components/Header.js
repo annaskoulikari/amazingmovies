@@ -16,6 +16,7 @@ class Header extends Component {
       <Fragment>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/searchMovies">Search Any Movie!</NavLink>
+        <NavLink to="/favourites">Favourites</NavLink>
 
         <Logout />
       </Fragment>

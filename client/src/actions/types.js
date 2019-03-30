@@ -15,3 +15,8 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 // types related to errors
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+//types related to favouriting feature
+export const GET_FAVOURITES = "GET_FAVOURITES";
+export const ADD_FAVOURITE = "ADD_FAVOURITE";
+export const DELETE_FAVOURITE = "DELETE_FAVOURITE";
+export const FAVOURITES_LOADING = "FAVOURITES_LOADING";
