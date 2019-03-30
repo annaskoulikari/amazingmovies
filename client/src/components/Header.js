@@ -1,13 +1,44 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Logout from "./Logout";
 
-function Header(props) {
-  return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/searchMovies">Search Any Movie!</NavLink>
-    </div>
-  );
+import PropTypes from "prop-types";
+
+class Header extends Component {
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
+  render() {
+    const { isAuthenticated, user } = this.props.auth;
+
+    const authLinks = (
+      <Fragment>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/searchMovies">Search Any Movie!</NavLink>
+
+        <Logout />
+      </Fragment>
+    );
+
+    const guestLinks = (
+      <Fragment>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/searchMovies">Search Any Movie!</NavLink>
+        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/register">Register </NavLink>
+      </Fragment>
+    );
+
+    return <div>{isAuthenticated ? authLinks : guestLinks}</div>;
+  }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Header);

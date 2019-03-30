@@ -1,12 +1,22 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const moviesSearch = require("./routes/moviesSearch");
-const movies = require("./routes/movies");
-const people = require("./routes/people");
-const tv = require("./routes/tv");
+const config = require("config");
+
+const mongoose = require("mongoose");
 
 const cors = require("cors");
 const app = express();
+
+//DB Config
+const db = config.get("mongoURI");
+
+//Connect to MongoDB
+mongoose
+  .connect(db, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  }) // Adding new mongo url parser
+  .then(() => console.log("MongoDB Connected..."))
+  .catch(err => console.log(err));
 
 app.use(
   cors({
@@ -16,15 +26,17 @@ app.use(
 );
 
 //Bodyparser Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Use Routes
+app.use("/moviesSearch", require("./routes/moviesSearch"));
+app.use("/movies", require("./routes/movies"));
+app.use("/people", require("./routes/people"));
+app.use("/tv", require("./routes/tv"));
+app.use("/login", require("./routes/login"));
+app.use("/auth", require("./routes/auth"));
+app.use("/users", require("./routes/users"));
 
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
-
-app.use("/moviesSearch", moviesSearch);
-app.use("/movies", movies);
-app.use("/people", people);
-app.use("/tv", tv);
