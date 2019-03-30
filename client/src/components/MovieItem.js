@@ -43,6 +43,7 @@ class MovieItem extends Component {
     // console.log("lets see if destructuring worked", itemID);
 
     const _idItem = this.props.itemUnderscoreID;
+
     console.log("is this underscore", _idItem);
 
     return (

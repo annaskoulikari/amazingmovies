@@ -17,8 +17,10 @@ router.get("/:user", (req, res) => {
 });
 
 router.post("/", auth, (req, res) => {
-  User.findOne({ _id: req.body.user })
-    .then(user => {
+  User.findOne({ _id: req.body.user }).then(user => {
+    if (user.favourite_movies.some(e => e.id === req.body.itemID)) {
+      console.log("this movie already exists");
+    } else {
       user.favourite_movies.push({
         id: req.body.itemID,
         backdrop_path: req.body.itemBackdropPath,
@@ -26,10 +28,12 @@ router.post("/", auth, (req, res) => {
         overview: req.body.itemOverview,
         release_date: req.body.itemReleaseDate
       });
+
       user.save();
-      return user;
-    })
-    .then(user => res.send(user.favourite_movies));
+
+      res.send(user.favourite_movies);
+    }
+  });
 });
 
 router.delete("/:itemID/:user", auth, (req, res) => {
