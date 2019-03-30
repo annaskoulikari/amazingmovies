@@ -4,42 +4,44 @@ const auth = require("../middleware/auth");
 
 const User = require("../models/User");
 
-router.post("/", auth, (req, res) => {
-  //first we need to find the right user
-
-  //   const newMovie = {
-  //     id: req.body.itemID,
-  //     backdrop_path: req.body.itemBackdropPath,
-  //     title: req.body.itemTitle,
-  //     overview: req.body.itemOverview,
-  //     release_date: req.body.itemReleaseDate
-  //   };
-
-  //   console.log("this is newMovie Object", newMovie);
-
-  //   User.update({ _id: req.body.id }, { $push: { favourite_movies: newMovie } });
-
-  User.findOne({ _id: req.body.user }).then(user => {
-    //   if(user.favourites.includes(req.body.itemID)){   res.status(401).json({
-    //     message: "favourite already exists in array"}
-    user.favourite_movies.push({
-      id: req.body.itemID,
-      backdrop_path: req.body.itemBackdropPath,
-      title: req.body.itemTitle,
-      overview: req.body.itemOverview,
-      release_date: req.body.itemReleaseDate
+router.get("/:user", (req, res) => {
+  console.log("these should be params", req.params);
+  User.findOne({ _id: req.params.user })
+    .then(user => res.send(user.favourite_movies))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
     });
-    user.save();
-  });
+});
 
-  //   User.findOne({ _id: req.body.user }).then(user => {
-  //     user.favourite_movies.push({ newMovie });
-  //     user.save();
-  //   });
+router.post("/", auth, (req, res) => {
+  User.findOne({ _id: req.body.user })
+    .then(user => {
+      user.favourite_movies.push({
+        id: req.body.itemID,
+        backdrop_path: req.body.itemBackdropPath,
+        title: req.body.itemTitle,
+        overview: req.body.itemOverview,
+        release_date: req.body.itemReleaseDate
+      });
+      user.save();
+      return user;
+    })
+    .then(user => res.send(user.favourite_movies));
+});
 
-  // then we need to save the new movie to the favourites
-
-  // then we need to return and res.send all the favourites back to frontend
+router.delete("/:itemID/:user", auth, (req, res) => {
+  console.log(req.params);
+  User.findOne({ _id: req.params.user })
+    .then(user => {
+      user.favourite_movies.pull({ _id: req.params.itemID });
+      user.save();
+      return user;
+    })
+    .then(user => res.send(user.favourite_movies))
+    .catch(err => res.status(404).json({ success: false }));
 });
 
 module.exports = router;

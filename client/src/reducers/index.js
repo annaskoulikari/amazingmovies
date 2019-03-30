@@ -5,6 +5,7 @@ import peopleReducer from "./peopleReducer";
 import tvReducer from "./tvReducer";
 import errorReducer from "./errorReducer";
 import authReducer from "./authReducer";
+import favouritesReducer from "./favouritesReducer";
 
 export default combineReducers({
   movies: movieReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   tv: tvReducer,
   moviesSearch: movieReducer,
   error: errorReducer,
-  auth: authReducer
+  auth: authReducer,
+  favourites: favouritesReducer
 });

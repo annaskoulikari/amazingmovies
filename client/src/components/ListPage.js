@@ -42,7 +42,7 @@ class ListPage extends Component {
               ))
             : this.props.movies.map(item => (
                 <MovieItem
-                  key={item.original_title}
+                  key={item.backdrop_path}
                   itemTitle={item.title}
                   itemID={item.id}
                   itemOverview={item.overview}

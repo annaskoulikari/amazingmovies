@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addFavourite } from "../actions/favouriteActions";
+import { addFavourite, deleteFavourite } from "../actions/favouriteActions";
 
 class MovieItem extends Component {
   state = {};
@@ -13,10 +13,10 @@ class MovieItem extends Component {
     this.props.addFavourite(movie);
   };
 
-  deleteFromFavourites = (e, movie) => {
+  deleteFromFavourites = (e, itemID, user) => {
     e.persist();
 
-    this.props.deleteFavourite(movie);
+    this.props.deleteFavourite(itemID, user);
   };
 
   render() {
@@ -42,9 +42,12 @@ class MovieItem extends Component {
     };
     // console.log("lets see if destructuring worked", itemID);
 
+    const _idItem = this.props.itemUnderscoreID;
+    console.log("is this underscore", _idItem);
+
     return (
       <div>
-        {this.props.item}
+        {this.props.itemTitle}
         <NavLink
           to={{
             pathname: "/detailPage",
@@ -56,7 +59,7 @@ class MovieItem extends Component {
         <button onClick={e => this.addToFavourites(e, movie)}>
           Add Movie to Favourites
         </button>
-        <button onClick={e => this.deleteFromFavourites(e, movie)}>
+        <button onClick={e => this.deleteFromFavourites(e, _idItem, user)}>
           Delete Movie from Favourites
         </button>
       </div>
@@ -71,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addFavourite }
+  { addFavourite, deleteFavourite }
 )(MovieItem);
