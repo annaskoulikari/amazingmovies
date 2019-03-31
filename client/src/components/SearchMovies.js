@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchMovies } from "../actions/movieActions";
-import Item from "./Item";
+import MovieItem from "./MovieItem";
 
 import { DebounceInput } from "react-debounce-input";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SearchMovies extends Component {
   constructor(props) {
@@ -22,26 +24,41 @@ class SearchMovies extends Component {
   performSearch() {
     const searchTerm = this.state.search;
     this.props.searchMovies(searchTerm);
-    console.log("search is being performed");
   }
 
   render() {
-    console.log("this.props is", this.props);
     return (
       <div>
-        Search movies!
-        <DebounceInput
-          type="text"
-          debounceTimeout={500}
-          value={this.state.search}
-          onChange={this.updateSearch.bind(this)}
-        />
+        <div className="searchContainer">
+          <span className="searchText">Search For Any Movie You Want!</span>
+
+          <DebounceInput
+            className="searchInput"
+            type="text"
+            debounceTimeout={500}
+            value={this.state.search}
+            onChange={this.updateSearch.bind(this)}
+          />
+        </div>
         {this.state.search.length > 0 ? (
-          this.props.moviesSearch.map(movie => (
-            <Item key={movie.id} item={movie.original_title} />
-          ))
+          <div className="wrapContainer">
+            {" "}
+            {this.props.moviesSearch.map(item => (
+              <MovieItem
+                key={item.id}
+                itemTitle={item.title}
+                itemID={item.id}
+                itemOverview={item.overview}
+                itemReleaseDate={item.release_date}
+                itemPosterPath={item.poster_path}
+                isInFavourite={false}
+              />
+            ))}
+          </div>
         ) : (
-          <div>Search for your favourite movie!</div>
+          <div className="searchPlaceholder">
+            <FontAwesomeIcon style={{ fontSize: 200 }} icon="film" />
+          </div>
         )}
       </div>
     );

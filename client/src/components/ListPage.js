@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Item from "./Item";
+import PeopleItem from "./PeopleItem";
+import TvItem from "./TvItem";
 import MovieItem from "./MovieItem";
 
 class ListPage extends Component {
@@ -21,20 +22,24 @@ class ListPage extends Component {
   render() {
     return (
       <div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center"
-          }}
-        >
+        <div className="wrapContainer">
           {this.state.identifier === "tv"
             ? this.props.tv.map(item => (
-                <Item key={item.original_name} item={item.original_name} />
+                <TvItem
+                  key={item.original_name}
+                  itemName={item.name}
+                  itemOverview={item.overview}
+                  itemPosterPath={item.poster_path}
+                />
               ))
             : this.state.identifier === "people"
             ? this.props.people.map(item => (
-                <Item key={item.original_title} item={item.original_title} />
+                <PeopleItem
+                  key={item.id}
+                  itemName={item.name}
+                  itemProfilePath={item.profile_path}
+                  itemKnownForDepartment={item.known_for_department}
+                />
               ))
             : this.props.movies.map(item => (
                 <MovieItem

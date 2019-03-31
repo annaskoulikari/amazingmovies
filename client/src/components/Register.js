@@ -62,43 +62,47 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.onSubmit}>
-          <FormGroup>
-            <Label for="name">Name</Label>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Name"
-              className="mb-3"
-              onChange={this.onChange}
-            />
+        <div className="loginContainer">
+          <Form onSubmit={this.onSubmit}>
+            <FormGroup>
+              <Label for="name">Name</Label>
+              <Input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                className="mb-3"
+                onChange={this.onChange}
+              />
 
-            <Label for="email">Email</Label>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="mb-3"
-              onChange={this.onChange}
-            />
+              <Label for="email">Email</Label>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                className="mb-3"
+                onChange={this.onChange}
+              />
 
-            <Label for="password">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              className="mb-3"
-              onChange={this.onChange}
-            />
-            <Button color="dark" style={{ marginTop: "2rem" }} block>
-              Register
-            </Button>
-          </FormGroup>
-        </Form>
-        {this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+              <Label for="password">Password</Label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="mb-3"
+                onChange={this.onChange}
+              />
+              <Button color="dark" style={{ marginTop: "2rem" }} block>
+                Register
+              </Button>
+            </FormGroup>
+          </Form>
+          {this.state.msg ? (
+            <Alert color="danger">{this.state.msg}</Alert>
+          ) : null}
+        </div>
       </div>
     );
   }

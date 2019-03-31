@@ -9,12 +9,18 @@ class MovieItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isInFavourite: false
+      isInFavourite: false,
+      isLoggedIn: false
     };
   }
 
   componentDidMount() {
     this.setState({ isInFavourite: this.props.isInFavourite });
+    if (this.props.auth.isAuthenticated) {
+      this.setState({ isLoggedIn: true });
+    } else {
+      this.setState({ isLoggedIn: false });
+    }
   }
 
   addToFavourites = (e, movie) => {
@@ -54,12 +60,12 @@ class MovieItem extends Component {
 
     return (
       <div>
-        <div className="movieCard">
-          <span className="movieCardTitle">{this.props.itemTitle}</span>
+        <div className="itemCard">
+          <span className="itemCardTitle">{this.props.itemTitle}</span>
           <img
             alt="movie poster"
             src={"https://image.tmdb.org/t/p/w185" + this.props.itemPosterPath}
-          />{" "}
+          />
           <div className="movieCardActions">
             <NavLink
               to={{
@@ -75,18 +81,8 @@ class MovieItem extends Component {
                 </Button>
               </div>
             </NavLink>
-            {this.state.isInFavourite ? (
-              <div className="movieCardFavouriteAction">
-                {" "}
-                <Button
-                  outline
-                  color="danger"
-                  onClick={e => this.deleteFromFavourites(e, _idItem)}
-                >
-                  Delete Movie from Favourites
-                </Button>
-              </div>
-            ) : (
+
+            {!this.state.isInFavourite && this.state.isLoggedIn ? (
               <div className="movieCardFavouriteAction">
                 <Button
                   outline
@@ -94,6 +90,28 @@ class MovieItem extends Component {
                   onClick={e => this.addToFavourites(e, movie)}
                 >
                   Add to Favourites
+                </Button>
+              </div>
+            ) : !this.state.isInFavourite ? (
+              <div className="movieCardFavouriteAction">
+                <Button
+                  disabled
+                  outline
+                  color="danger"
+                  onClick={e => this.addToFavourites(e, movie)}
+                >
+                  Add to Favourites
+                </Button>
+              </div>
+            ) : (
+              <div className="movieCardFavouriteAction">
+                {" "}
+                <Button
+                  outline
+                  color="danger"
+                  onClick={e => this.deleteFromFavourites(e, _idItem)}
+                >
+                  Delete from Favourites
                 </Button>
               </div>
             )}
