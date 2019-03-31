@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Logout from "./Logout";
-import { Navbar, NavItem, NavbarBrand } from "reactstrap";
+import { Navbar, NavbarBrand } from "reactstrap";
 
 import PropTypes from "prop-types";
 

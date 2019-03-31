@@ -9,11 +9,15 @@ const path = require("path");
 const app = express();
 
 //DB Config
+
 const db = config.get("mongoURI");
 
+const dbTry = require("./config/keys").mongoURI;
+
+//
 //Connect to MongoDB
 mongoose
-  .connect(db, {
+  .connect(dbTry, {
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
