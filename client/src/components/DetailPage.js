@@ -13,7 +13,7 @@ class DetailPage extends Component {
     const { itemIdentifier } = this.props.location.state;
 
     this.setState({ itemIdentifier: itemIdentifier });
-    console.log("this.props is", this.props);
+
     if (this.props.location.state.itemIdentifier === "tv") {
       this.setState({ item: this.props.location.state.tv });
     }
@@ -26,8 +26,6 @@ class DetailPage extends Component {
   }
 
   render() {
-    console.log("this.state is", this.state);
-
     return (
       <div>
         {this.state.itemIdentifier === "tv" ? (
