@@ -12,12 +12,12 @@ const app = express();
 
 const db = config.get("mongoURI");
 
-const dbTry = require("./config/keys").mongoURI;
+const dbMlab = require("./config/keys").mongoURI;
 
 //
 //Connect to MongoDB
 mongoose
-  .connect(dbTry, {
+  .connect(dbMlab, {
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
