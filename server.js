@@ -18,7 +18,7 @@ const port = process.env.PORT || 5000;
 //
 //Connect to MongoDB
 mongoose
-  .connect(db, {
+  .connect(dbMlab, {
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
