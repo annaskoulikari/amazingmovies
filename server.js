@@ -14,10 +14,11 @@ const db = config.get("mongoURI");
 
 const dbMlab = require("./config/keys").mongoURI;
 
+const port = process.env.PORT || 5000;
 //
 //Connect to MongoDB
 mongoose
-  .connect(dbMlab, {
+  .connect(process.env.MONGO_URI || db, {
     useNewUrlParser: true,
     useCreateIndex: true
   }) // Adding new mongo url parser
@@ -52,7 +53,5 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
