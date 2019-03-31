@@ -22,8 +22,9 @@ class Favourites extends Component {
             itemID={item.id}
             itemOverview={item.overview}
             itemReleaseDate={item.release_date}
-            itemBackdropPath={item.backdrop_path}
+            itemPosterPath={item.poster_path}
             itemUnderscoreID={item._id}
+            isInFavourite={true}
           />
         ))}
       </div>

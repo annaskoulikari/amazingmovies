@@ -8,7 +8,7 @@ const FavouriteSchema = new Schema({
     type: Number
     // required: true
   },
-  backdrop_path: {
+  poster_path: {
     type: String
     // required: true
   },

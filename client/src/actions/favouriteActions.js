@@ -24,10 +24,10 @@ export const getFavourites = user => dispatch => {
     );
 };
 
-export const addFavourite = addMovie => (dispatch, getState) => {
+export const addFavourite = (addMovie, user) => (dispatch, getState) => {
   console.log("we got movie object in action creator", addMovie);
   axios
-    .post("/favourites", addMovie, tokenConfig(getState))
+    .post("/favourites", { addMovie, user }, tokenConfig(getState))
     .then(res => {
       console.log("is this response after we add a movie", res);
       dispatch({

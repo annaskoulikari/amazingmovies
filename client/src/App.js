@@ -27,7 +27,6 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <div>Hello</div>
             <Header />
             {/* <Route
               path="/login"

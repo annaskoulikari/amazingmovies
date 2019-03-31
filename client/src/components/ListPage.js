@@ -47,7 +47,8 @@ class ListPage extends Component {
                   itemID={item.id}
                   itemOverview={item.overview}
                   itemReleaseDate={item.release_date}
-                  itemBackdropPath={item.backdrop_path}
+                  itemPosterPath={item.poster_path}
+                  isInFavourite={false}
                 />
               ))}
         </div>

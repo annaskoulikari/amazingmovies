@@ -17,16 +17,17 @@ router.get("/:user", (req, res) => {
 });
 
 router.post("/", auth, (req, res) => {
+  console.log("this is req.body", req.body);
   User.findOne({ _id: req.body.user }).then(user => {
-    if (user.favourite_movies.some(e => e.id === req.body.itemID)) {
+    if (user.favourite_movies.some(e => e.id === req.body.addMovie.itemID)) {
       console.log("this movie already exists");
     } else {
       user.favourite_movies.push({
-        id: req.body.itemID,
-        backdrop_path: req.body.itemBackdropPath,
-        title: req.body.itemTitle,
-        overview: req.body.itemOverview,
-        release_date: req.body.itemReleaseDate
+        id: req.body.addMovie.itemID,
+        poster_path: req.body.addMovie.itemPosterPath,
+        title: req.body.addMovie.itemTitle,
+        overview: req.body.addMovie.itemOverview,
+        release_date: req.body.addMovie.itemReleaseDate
       });
 
       user.save();
