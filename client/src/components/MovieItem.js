@@ -70,10 +70,9 @@ class MovieItem extends Component {
             <NavLink
               to={{
                 pathname: "/detailPage",
-                state: { itemIdentifier: itemIdentifier }
+                state: { itemIdentifier: "movie", movie: movie }
               }}
             >
-              {" "}
               <div className="movieCardVieMore">
                 <Button outline color="primary">
                   {" "}

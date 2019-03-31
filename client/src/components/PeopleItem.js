@@ -5,7 +5,14 @@ import { Button } from "reactstrap";
 class PeopleItem extends Component {
   state = {};
   render() {
-    const itemIdentifier = this.props.item;
+    const { itemProfilePath, itemName, itemKnownForDepartment } = this.props;
+
+    const person = {
+      itemProfilePath,
+      itemName,
+      itemKnownForDepartment
+    };
+
     return (
       <div>
         <div className="itemCard">
@@ -17,7 +24,7 @@ class PeopleItem extends Component {
           <NavLink
             to={{
               pathname: "/detailPage",
-              state: { itemIdentifier: itemIdentifier }
+              state: { itemIdentifier: "people", person: person }
             }}
           >
             <div className="movieCardVieMore">

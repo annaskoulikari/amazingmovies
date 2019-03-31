@@ -5,7 +5,14 @@ import { Button } from "reactstrap";
 class TvItem extends Component {
   state = {};
   render() {
-    const itemIdentifier = this.props.item;
+    const { itemPosterPath, itemName, itemOverview } = this.props;
+
+    const tv = {
+      itemPosterPath,
+      itemName,
+      itemOverview
+    };
+
     return (
       <div>
         <div className="itemCard">
@@ -17,7 +24,7 @@ class TvItem extends Component {
           <NavLink
             to={{
               pathname: "/detailPage",
-              state: { itemIdentifier: itemIdentifier }
+              state: { itemIdentifier: "tv", tv: tv }
             }}
           >
             <div className="movieCardVieMore">

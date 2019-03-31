@@ -34,11 +34,12 @@ class App extends Component {
 
             <Route exact path="/" component={Home} />
             <Route path="/listPage" component={ListPage} />
-            <Route path="/detailPage" component={DetailPage} />
+
             <Route path="/searchMovies" component={SearchMovies} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/favourites" component={Favourites} />
+            <Route path="/detailPage" component={DetailPage} />
           </div>
         </BrowserRouter>
       </Provider>

@@ -88,3 +88,29 @@
   justify-content: center;
   margin: 20px;
 }
+
+.detailPageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.detailPageTitleContainer {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 40px;
+  margin: 20px;
+}
+
+.detailPageContentContainer {
+  display: flex;
+  margin: 20px;
+}
+
+.detailPageImage {
+  margin: 20px;
+}
+
+.detailPageOverview {
+  font-size: 25px;
+  margin: 20px;
+}

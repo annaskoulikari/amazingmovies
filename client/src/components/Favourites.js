@@ -14,18 +14,20 @@ class Favourites extends Component {
   render() {
     return (
       <div>
-        {this.props.favourites.map(item => (
-          <MovieItem
-            key={item.overview}
-            itemTitle={item.title}
-            itemID={item.id}
-            itemOverview={item.overview}
-            itemReleaseDate={item.release_date}
-            itemPosterPath={item.poster_path}
-            itemUnderscoreID={item._id}
-            isInFavourite={true}
-          />
-        ))}
+        <div className="wrapContainer">
+          {this.props.favourites.map(item => (
+            <MovieItem
+              key={item.overview}
+              itemTitle={item.title}
+              itemID={item.id}
+              itemOverview={item.overview}
+              itemReleaseDate={item.release_date}
+              itemPosterPath={item.poster_path}
+              itemUnderscoreID={item._id}
+              isInFavourite={true}
+            />
+          ))}
+        </div>
       </div>
     );
   }
