@@ -6,9 +6,8 @@ import MovieItem from "./MovieItem";
 
 class Favourites extends Component {
   componentDidMount() {
-    console.log("these are the props", this.props);
     const user = this.props.auth.user.id;
-    console.log("is this user", user);
+
     this.props.getFavourites(user);
   }
   state = {};
@@ -33,8 +32,7 @@ class Favourites extends Component {
 }
 
 Favourites.propTypes = {
-  // getMovies: PropTypes.func.isRequired
-  // movies: PropTypes.object.isRequired
+  getFavourites: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

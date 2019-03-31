@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Logout from "./Logout";
+import { Navbar, NavItem, NavbarBrand } from "reactstrap";
 
 import PropTypes from "prop-types";
 
@@ -10,13 +11,19 @@ class Header extends Component {
     auth: PropTypes.object.isRequired
   };
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <Fragment>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/searchMovies">Search Any Movie!</NavLink>
-        <NavLink to="/favourites">Favourites</NavLink>
+        <NavLink className="navLink" to="/">
+          Home
+        </NavLink>
+        <NavLink className="navLink" to="/searchMovies">
+          Search Any Movie!
+        </NavLink>
+        <NavLink className="navLink" to="/favourites">
+          Favourites
+        </NavLink>
 
         <Logout />
       </Fragment>
@@ -24,14 +31,30 @@ class Header extends Component {
 
     const guestLinks = (
       <Fragment>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/searchMovies">Search Any Movie!</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/register">Register </NavLink>
+        <NavLink className="navLink" to="/">
+          Home
+        </NavLink>
+
+        <NavLink className="navLink" to="/searchMovies">
+          Search Any Movie!
+        </NavLink>
+        <NavLink className="navLink" to="/login">
+          Login
+        </NavLink>
+        <NavLink className="navLink" to="/register">
+          Register{" "}
+        </NavLink>
       </Fragment>
     );
 
-    return <div>{isAuthenticated ? authLinks : guestLinks}</div>;
+    return (
+      <div>
+        <Navbar className="navBar">
+          <NavbarBrand style={{ color: "#01D572" }}>Amazing Movies</NavbarBrand>
+          {isAuthenticated ? authLinks : guestLinks}
+        </Navbar>
+      </div>
+    );
   }
 }
 

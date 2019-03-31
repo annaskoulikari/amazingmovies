@@ -1,0 +1,47 @@
+.category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px 10px 20px;
+}
+
+.categoryOptions {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px;
+}
+
+.navLink {
+  color: white;
+}
+
+.navBar {
+  background-color: #061b23;
+}
+
+.movieCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+}
+
+.movieCardTitle {
+  font-size: 20px;
+}
+
+.movieCardActions {
+  display: flex;
+}
+
+.movieCardVieMore {
+  margin: 5px;
+}
+
+.movieCardFavouriteAction {
+  margin: 5px;
+}

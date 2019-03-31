@@ -1,84 +1,66 @@
 import React, { Component } from "react";
-
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-
-import Movie from "./Item";
-
 import { connect } from "react-redux";
 import { getMovies } from "../actions/movieActions";
 import { getPeople } from "../actions/peopleActions";
 import { getTv } from "../actions/tvActions";
-import { logIn } from "../actions/loginActions";
+import { Button } from "reactstrap";
+
 import PropTypes from "prop-types";
-import { Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      movies: [],
-      toLogin: false
-    };
+    this.state = {};
   }
 
   componentDidMount() {
-    this.setState({ toLogin: false });
     this.props.getMovies();
     this.props.getPeople();
     this.props.getTv();
   }
 
-  sessionStart() {
-    let requestToken = sessionStorage.getItem("requestToken");
-    axios
-      .get(
-        "https://api.themoviedb.org/3/authentication/session/new?api_key=943d003becc08df50bf054b11efaccb1",
-        { request_token: requestToken }
-      )
-      .then(res => console.log("this is response from sessionstart", res));
-  }
-
-  logIn() {
-    this.props.logIn();
-    this.setState({ toLogin: true });
-  }
-
   render() {
-    // if (this.state.toLogin === true) {
-    //   return <Redirect to="/login" />;
-    // }
-
-    let requestToken = sessionStorage.getItem("requestToken");
-    console.log("this is requestToken", requestToken);
-
     return (
-      <div>
-        <div>this is homepage</div>
+      <div className="categoryOptions">
         <NavLink
           to={{ pathname: "/listPage", state: { identifier: "movies" } }}
         >
-          Movies
+          <Button outline>
+            <div className="category">
+              <FontAwesomeIcon style={{ fontSize: 70 }} icon="film" />
+              <span style={{ fontSize: 40 }}>Movies</span>
+            </div>
+          </Button>
         </NavLink>
         <NavLink to={{ pathname: "/listPage", state: { identifier: "tv" } }}>
-          TV
+          <Button outline>
+            <div className="category">
+              <FontAwesomeIcon style={{ fontSize: 70 }} icon="tv" />
+              <span style={{ fontSize: 40 }}>TV</span>
+            </div>
+          </Button>
         </NavLink>
         <NavLink
           to={{ pathname: "/listPage", state: { identifier: "people" } }}
         >
-          People
+          <Button outline>
+            <div className="category">
+              <FontAwesomeIcon style={{ fontSize: 70 }} icon="users" />
+              <span style={{ fontSize: 40 }}>People</span>
+            </div>
+          </Button>
         </NavLink>
-        <button onClick={this.logIn.bind(this)}>log in</button>
-        <NavLink to="/login">second step</NavLink>
-        <button onClick={this.sessionStart.bind(this)}>Start session</button>
       </div>
     );
   }
 }
 
 Home.propTypes = {
-  // getMovies: PropTypes.func.isRequired
-  // movies: PropTypes.object.isRequired
+  getMovies: PropTypes.func.isRequired,
+  getPeople: PropTypes.func.isRequired,
+  getTv: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -89,5 +71,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getMovies, getPeople, getTv, logIn }
+  { getMovies, getPeople, getTv }
 )(Home);

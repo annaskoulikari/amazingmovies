@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addFavourite, deleteFavourite } from "../actions/favouriteActions";
+import { Button } from "reactstrap";
 
 class MovieItem extends Component {
   constructor(props) {
@@ -31,9 +32,6 @@ class MovieItem extends Component {
   render() {
     const itemIdentifier = this.props.item;
 
-    // const user = this.props.auth.user.id;
-
-    // console.log("is this user id", user);
     const {
       itemID,
       itemPosterPath,
@@ -48,9 +46,7 @@ class MovieItem extends Component {
       itemTitle,
       itemOverview,
       itemReleaseDate
-      //   user
     };
-    // console.log("lets see if destructuring worked", itemID);
 
     const _idItem = this.props.itemUnderscoreID;
 
@@ -58,34 +54,57 @@ class MovieItem extends Component {
 
     return (
       <div>
-        {this.props.itemTitle}
-        <img
-          src={"https://image.tmdb.org/t/p/w185" + this.props.itemPosterPath}
-        />
-        <NavLink
-          to={{
-            pathname: "/detailPage",
-            state: { itemIdentifier: itemIdentifier }
-          }}
-        >
-          View More
-        </NavLink>
-        {this.state.isInFavourite ? (
-          <button onClick={e => this.deleteFromFavourites(e, _idItem)}>
-            Delete Movie from Favourites
-          </button>
-        ) : (
-          <button onClick={e => this.addToFavourites(e, movie)}>
-            Add Movie to Favourites
-          </button>
-        )}
+        <div className="movieCard">
+          <span className="movieCardTitle">{this.props.itemTitle}</span>
+          <img
+            alt="movie poster"
+            src={"https://image.tmdb.org/t/p/w185" + this.props.itemPosterPath}
+          />{" "}
+          <div className="movieCardActions">
+            <NavLink
+              to={{
+                pathname: "/detailPage",
+                state: { itemIdentifier: itemIdentifier }
+              }}
+            >
+              {" "}
+              <div className="movieCardVieMore">
+                <Button outline color="primary">
+                  {" "}
+                  View More
+                </Button>
+              </div>
+            </NavLink>
+            {this.state.isInFavourite ? (
+              <div className="movieCardFavouriteAction">
+                {" "}
+                <Button
+                  outline
+                  color="danger"
+                  onClick={e => this.deleteFromFavourites(e, _idItem)}
+                >
+                  Delete Movie from Favourites
+                </Button>
+              </div>
+            ) : (
+              <div className="movieCardFavouriteAction">
+                <Button
+                  outline
+                  color="danger"
+                  onClick={e => this.addToFavourites(e, movie)}
+                >
+                  Add to Favourites
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  //   favourites: state.favourites.favourites
   auth: state.auth
 });
 

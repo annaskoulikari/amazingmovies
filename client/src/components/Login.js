@@ -6,12 +6,6 @@ import { login } from "../actions/authActions";
 import { clearErrors } from "../actions/errorActions";
 
 class Login extends Component {
-  //   state = {
-  //     msg: null,
-  //     email: "",
-  //     password: ""
-  //   };
-
   constructor(props) {
     super(props);
     this.state = {

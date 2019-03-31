@@ -15,23 +15,19 @@ class ListPage extends Component {
 
   componentDidMount() {
     const { identifier } = this.props.location.state;
-    console.log("this should be identifier", identifier);
+
     this.setState({ identifier: identifier });
   }
   render() {
-    // const {
-    //   id,
-    //   backdrop_path,
-    //   original_title,
-    //   overview,
-    //   release_date
-    // } = this.props.movies;
-    // console.log("let's see if destructuring worked", original_title);
-
     return (
       <div>
-        I am the listpage{" "}
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center"
+          }}
+        >
           {this.state.identifier === "tv"
             ? this.props.tv.map(item => (
                 <Item key={item.original_name} item={item.original_name} />

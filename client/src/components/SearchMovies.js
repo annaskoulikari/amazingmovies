@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { searchMovies } from "../actions/movieActions";
 import Item from "./Item";
-import { debounce } from "lodash";
+
 import { DebounceInput } from "react-debounce-input";
 
 class SearchMovies extends Component {
@@ -30,11 +30,6 @@ class SearchMovies extends Component {
     return (
       <div>
         Search movies!
-        {/* <input
-          type="text"
-          value={this.state.search}
-          onChange={this.updateSearch.bind(this)}
-        /> */}
         <DebounceInput
           type="text"
           debounceTimeout={500}

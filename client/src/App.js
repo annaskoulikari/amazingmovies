@@ -15,25 +15,23 @@ import Register from "./components/Register";
 import Favourites from "./components/Favourites";
 
 import { loadUser } from "./actions/authActions";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+import { faFilm, faTv, faUsers } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faFilm, faTv, faUsers);
 
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
   render() {
-    let requestToken = sessionStorage.getItem("requestToken");
-    let path = "https://www.themoviedb.org/authenticate/" + requestToken;
     return (
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
             <Header />
-            {/* <Route
-              path="/login"
-              component={() =>
-                (window.location = `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:3000/`)
-              }
-            /> */}
+
             <Route exact path="/" component={Home} />
             <Route path="/listPage" component={ListPage} />
             <Route path="/detailPage" component={DetailPage} />

@@ -33,7 +33,6 @@ app.use("/moviesSearch", require("./routes/moviesSearch"));
 app.use("/movies", require("./routes/movies"));
 app.use("/people", require("./routes/people"));
 app.use("/tv", require("./routes/tv"));
-app.use("/login", require("./routes/login"));
 app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/users"));
 app.use("/favourites", require("./routes/favourites"));
