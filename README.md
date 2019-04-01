@@ -6,6 +6,8 @@ You can also favourite :heart: movies that you like!
 
 ## Quick Start
 
+Create a .env file and your MONGOURI and JWTSECRET.
+
 ```bash
 # Install dependencies for server
 npm install
