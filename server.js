@@ -1,5 +1,6 @@
 const express = require("express");
 const config = require("config");
+require("dotenv").config();
 
 const mongoose = require("mongoose");
 
@@ -10,7 +11,8 @@ const app = express();
 
 //DB Config
 
-const db = config.get("mongoURI");
+// const db = config.get("mongoURI");
+const db = process.env.MONGOURI;
 
 const port = process.env.PORT || 5000;
 //

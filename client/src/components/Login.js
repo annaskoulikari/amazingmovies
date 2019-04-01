@@ -54,7 +54,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log("this.props is", this.props);
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="loginContainer">
