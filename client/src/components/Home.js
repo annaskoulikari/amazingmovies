@@ -24,6 +24,7 @@ class Home extends Component {
   render() {
     return (
       <div className="categoryOptions">
+        <div>CHECKING IF ENABLING AUTOMATIC DEPLOYS WORKED</div>
         <NavLink
           to={{ pathname: "/listPage", state: { identifier: "movies" } }}
         >
