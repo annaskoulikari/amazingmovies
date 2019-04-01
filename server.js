@@ -12,8 +12,6 @@ const app = express();
 
 const db = config.get("mongoURI");
 
-// const dbMlab = require("./config/keys").mongoURI;
-
 const port = process.env.PORT || 5000;
 //
 //Connect to MongoDB

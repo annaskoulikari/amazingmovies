@@ -5,7 +5,6 @@ export const getTv = () => dispatch => {
   axios
     .get("/tv")
     .then(res => {
-      console.log("this is response", res);
       dispatch({
         type: GET_TV,
         payload: res.data.results

@@ -13,7 +13,10 @@ router.get(
       .then(response => {
         return response.data;
       })
-      .then(response => res.send(response));
+      .then(response => res.send(response))
+      .catch(err => {
+        console.log(err);
+      });
   }
 );
 

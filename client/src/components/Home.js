@@ -60,7 +60,10 @@ class Home extends Component {
 Home.propTypes = {
   getMovies: PropTypes.func.isRequired,
   getPeople: PropTypes.func.isRequired,
-  getTv: PropTypes.func.isRequired
+  getTv: PropTypes.func.isRequired,
+  movies: PropTypes.array.isRequired,
+  people: PropTypes.array.isRequired,
+  tv: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({

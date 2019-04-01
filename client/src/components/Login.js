@@ -15,13 +15,6 @@ class Login extends Component {
     };
   }
 
-  static propTypes = {
-    isAuthenticated: PropTypes.bool,
-    error: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
-  };
-
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
@@ -61,8 +54,9 @@ class Login extends Component {
   };
 
   render() {
+    console.log("this.props is", this.props);
     return (
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="loginContainer">
           <Form onSubmit={this.onSubmit}>
             <FormGroup>
@@ -98,6 +92,13 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  error: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,

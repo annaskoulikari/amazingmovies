@@ -36,8 +36,6 @@ class MovieItem extends Component {
   };
 
   render() {
-    const itemIdentifier = this.props.item;
-
     const {
       itemID,
       itemPosterPath,
@@ -55,8 +53,6 @@ class MovieItem extends Component {
     };
 
     const _idItem = this.props.itemUnderscoreID;
-
-    console.log("is this underscore", _idItem);
 
     return (
       <div>
@@ -93,12 +89,7 @@ class MovieItem extends Component {
               </div>
             ) : !this.state.isInFavourite ? (
               <div className="movieCardFavouriteAction">
-                <Button
-                  disabled
-                  outline
-                  color="danger"
-                  onClick={e => this.addToFavourites(e, movie)}
-                >
+                <Button disabled outline color="danger">
                   Add to Favourites
                 </Button>
               </div>
@@ -120,6 +111,18 @@ class MovieItem extends Component {
     );
   }
 }
+
+MovieItem.propTypes = {
+  addFavourite: PropTypes.func.isRequired,
+  deleteFavourite: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  isInFavourite: PropTypes.bool.isRequired,
+  itemID: PropTypes.number.isRequired,
+  itemOverview: PropTypes.string.isRequired,
+  itemPosterPath: PropTypes.string,
+  itemReleaseDate: PropTypes.string.isRequired,
+  itemTitle: PropTypes.string.isRequired
+};
 
 const mapStateToProps = state => ({
   auth: state.auth

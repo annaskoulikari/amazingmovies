@@ -61,7 +61,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="loginContainer">
           <Form onSubmit={this.onSubmit}>
             <FormGroup>

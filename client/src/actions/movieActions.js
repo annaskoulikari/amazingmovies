@@ -5,7 +5,6 @@ export const getMovies = () => dispatch => {
   axios
     .get("/movies")
     .then(res => {
-      console.log("this is response", res);
       dispatch({
         type: GET_MOVIES,
         payload: res.data.results
@@ -17,11 +16,9 @@ export const getMovies = () => dispatch => {
 };
 
 export const searchMovies = searchTerm => dispatch => {
-  console.log("reached searchMovies action");
   axios
     .post("/moviesSearch", { searchTerm: searchTerm })
     .then(res => {
-      console.log("this is response", res);
       dispatch({
         type: SEARCH_MOVIES,
         payload: res.data.results

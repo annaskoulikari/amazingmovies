@@ -10,7 +10,7 @@ class Favourites extends Component {
 
     this.props.getFavourites(user);
   }
-  state = {};
+
   render() {
     return (
       <div>
@@ -34,7 +34,9 @@ class Favourites extends Component {
 }
 
 Favourites.propTypes = {
-  getFavourites: PropTypes.func.isRequired
+  getFavourites: PropTypes.func.isRequired,
+  favourites: PropTypes.array,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

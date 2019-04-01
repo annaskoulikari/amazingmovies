@@ -83,10 +83,12 @@
 }
 
 .loginContainer {
-  /* width: 50%; */
+  width: 100%;
+  max-width: 400px;
   display: flex;
   justify-content: center;
   margin: 20px;
+  flex-direction: column;
 }
 
 .detailPageContainer {
@@ -113,4 +115,16 @@
 .detailPageOverview {
   font-size: 25px;
   margin: 20px;
+}
+
+.detailPageAddFavourite {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px;
+}
+
+.previousPage {
+  margin: 20px 0px 0px 60px;
+  font-size: 50px;
 }

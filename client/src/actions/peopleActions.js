@@ -5,7 +5,6 @@ export const getPeople = () => dispatch => {
   axios
     .get("/people")
     .then(res => {
-      console.log("this is response", res);
       dispatch({
         type: GET_PEOPLE,
         payload: res.data.results

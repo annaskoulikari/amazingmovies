@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "reactstrap";
+import PropTypes from "prop-types";
 
 class TvItem extends Component {
-  state = {};
   render() {
     const { itemPosterPath, itemName, itemOverview } = this.props;
 
@@ -39,5 +39,11 @@ class TvItem extends Component {
     );
   }
 }
+
+TvItem.propTypes = {
+  itemOverview: PropTypes.string.isRequired,
+  itemPosterPath: PropTypes.string,
+  itemName: PropTypes.string.isRequired
+};
 
 export default TvItem;

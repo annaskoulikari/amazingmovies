@@ -7,9 +7,6 @@ import { Navbar, NavbarBrand } from "reactstrap";
 import PropTypes from "prop-types";
 
 class Header extends Component {
-  static propTypes = {
-    auth: PropTypes.object.isRequired
-  };
   render() {
     const { isAuthenticated } = this.props.auth;
 
@@ -57,6 +54,10 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  auth: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   auth: state.auth

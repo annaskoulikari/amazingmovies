@@ -65,6 +65,11 @@ class SearchMovies extends Component {
   }
 }
 
+SearchMovies.propTypes = {
+  searchMovies: PropTypes.func.isRequired,
+  moviesSearch: PropTypes.array.isRequired
+};
+
 const mapStateToProps = state => ({
   moviesSearch: state.moviesSearch.moviesSearch
 });

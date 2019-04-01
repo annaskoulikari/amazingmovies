@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
 import PeopleItem from "./PeopleItem";
 import TvItem from "./TvItem";
 import MovieItem from "./MovieItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { createBrowserHistory } from "history";
 
 class ListPage extends Component {
   constructor(props) {
@@ -20,8 +21,19 @@ class ListPage extends Component {
     this.setState({ identifier: identifier });
   }
   render() {
+    const history = createBrowserHistory();
     return (
       <div>
+        <div>
+          <FontAwesomeIcon
+            onClick={() => {
+              history.goBack();
+            }}
+            role="button"
+            className="previousPage"
+            icon="arrow-left"
+          />
+        </div>
         <div className="wrapContainer">
           {this.state.identifier === "tv"
             ? this.props.tv.map(item => (
@@ -57,6 +69,12 @@ class ListPage extends Component {
     );
   }
 }
+
+ListPage.propTypes = {
+  movies: PropTypes.array.isRequired,
+  people: PropTypes.array.isRequired,
+  tv: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => ({
   movies: state.movies.movies,

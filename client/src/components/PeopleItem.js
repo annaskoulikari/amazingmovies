@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "reactstrap";
+import PropTypes from "prop-types";
 
 class PeopleItem extends Component {
-  state = {};
   render() {
     const { itemProfilePath, itemName, itemKnownForDepartment } = this.props;
 
@@ -39,5 +39,11 @@ class PeopleItem extends Component {
     );
   }
 }
+
+PeopleItem.propTypes = {
+  itemProfilePath: PropTypes.string.isRequired,
+  itemName: PropTypes.string.isRequired,
+  itemKnownForDepartment: PropTypes.string.isRequired
+};
 
 export default PeopleItem;

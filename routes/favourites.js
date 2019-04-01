@@ -18,23 +18,27 @@ router.get("/:user", (req, res) => {
 
 router.post("/", auth, (req, res) => {
   console.log("this is req.body", req.body);
-  User.findOne({ _id: req.body.user }).then(user => {
-    if (user.favourite_movies.some(e => e.id === req.body.addMovie.itemID)) {
-      console.log("this movie already exists");
-    } else {
-      user.favourite_movies.push({
-        id: req.body.addMovie.itemID,
-        poster_path: req.body.addMovie.itemPosterPath,
-        title: req.body.addMovie.itemTitle,
-        overview: req.body.addMovie.itemOverview,
-        release_date: req.body.addMovie.itemReleaseDate
-      });
+  User.findOne({ _id: req.body.user })
+    .then(user => {
+      if (user.favourite_movies.some(e => e.id === req.body.addMovie.itemID)) {
+        console.log("this movie already exists");
+      } else {
+        user.favourite_movies.push({
+          id: req.body.addMovie.itemID,
+          poster_path: req.body.addMovie.itemPosterPath,
+          title: req.body.addMovie.itemTitle,
+          overview: req.body.addMovie.itemOverview,
+          release_date: req.body.addMovie.itemReleaseDate
+        });
 
-      user.save();
+        user.save();
 
-      res.send(user.favourite_movies);
-    }
-  });
+        res.send(user.favourite_movies);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 router.delete("/:itemID/:user", auth, (req, res) => {
