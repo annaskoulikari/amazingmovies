@@ -32,14 +32,18 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="App">
-            <Header />
-            <Route exact path="/" component={Home} />
-            <Route path="/listPage" component={ListPage} />
-            <Route path="/searchMovies" component={SearchMovies} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/favourites" component={Favourites} />
-            <Route path="/detailPage" component={DetailPage} />
+            <div className="sticky">
+              <Header />
+            </div>
+            <div style={{ marginTop: 56 }}>
+              <Route exact path="/" component={Home} />
+              <Route path="/listPage" component={ListPage} />
+              <Route path="/searchMovies" component={SearchMovies} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/favourites" component={Favourites} />
+              <Route path="/detailPage" component={DetailPage} />
+            </div>
           </div>
         </BrowserRouter>
       </Provider>

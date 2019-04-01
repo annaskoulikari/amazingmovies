@@ -23,35 +23,40 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="categoryOptions">
-        <NavLink
-          to={{ pathname: "/listPage", state: { identifier: "movies" } }}
-        >
-          <Button outline>
-            <div className="category">
-              <FontAwesomeIcon style={{ fontSize: 70 }} icon="film" />
-              <span style={{ fontSize: 40 }}>Movies</span>
-            </div>
-          </Button>
-        </NavLink>
-        <NavLink to={{ pathname: "/listPage", state: { identifier: "tv" } }}>
-          <Button outline>
-            <div className="category">
-              <FontAwesomeIcon style={{ fontSize: 70 }} icon="tv" />
-              <span style={{ fontSize: 40 }}>TV</span>
-            </div>
-          </Button>
-        </NavLink>
-        <NavLink
-          to={{ pathname: "/listPage", state: { identifier: "people" } }}
-        >
-          <Button outline>
-            <div className="category">
-              <FontAwesomeIcon style={{ fontSize: 70 }} icon="users" />
-              <span style={{ fontSize: 40 }}>People</span>
-            </div>
-          </Button>
-        </NavLink>
+      <div>
+        <div className="homePageTitle">Check Out What Is Trending In :</div>
+        <div className="categoryOptions">
+          <div className="categorySelection">
+            <NavLink
+              className="category"
+              style={{ width: "100%", height: "100%" }}
+              to={{ pathname: "/listPage", state: { identifier: "movies" } }}
+            >
+              <FontAwesomeIcon className="categoryIcon" icon="film" />
+              <span className="categoryTitle">Movies</span>
+            </NavLink>
+          </div>
+          <div className="categorySelection">
+            <NavLink
+              className="category"
+              style={{ width: "100%", height: "100%" }}
+              to={{ pathname: "/listPage", state: { identifier: "tv" } }}
+            >
+              <FontAwesomeIcon className="categoryIcon" icon="tv" />
+              <span className="categoryTitle">TV</span>
+            </NavLink>
+          </div>
+          <div className="categorySelection">
+            <NavLink
+              className="category"
+              style={{ width: "100%", height: "100%" }}
+              to={{ pathname: "/listPage", state: { identifier: "people" } }}
+            >
+              <FontAwesomeIcon className="categoryIcon" icon="users" />
+              <span className="categoryTitle">People</span>
+            </NavLink>
+          </div>
+        </div>
       </div>
     );
   }
