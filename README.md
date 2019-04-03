@@ -40,6 +40,8 @@ npm run client
 - React
 - Redux
 
+Click [here](https://mighty-island-69251.herokuapp.com/) to check out the deployed app
+
 ### Author
 
 :raising_hand: Anna Skoulikari
