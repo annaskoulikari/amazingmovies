@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+require("dotenv").config();
+
+const apikey = process.env.APIKEY;
 
 router.get(
   "/",
 
   (req, res) => {
     axios
-      .get(
-        "https://api.themoviedb.org/3/trending/tv/week?api_key=943d003becc08df50bf054b11efaccb1"
-      )
+      .get(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apikey}`)
       .then(response => {
         return response.data;
       })

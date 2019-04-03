@@ -6,7 +6,7 @@ You can also favourite :heart: movies that you like!
 
 ## Quick Start
 
-Create a .env file and your MONGOURI and JWTSECRET.
+Create a .env file and your MONGOURI and JWTSECRET as well as your APIKEY from the [The Movie Database](https://www.themoviedb.org/).
 
 ```bash
 # Install dependencies for server
@@ -40,7 +40,7 @@ npm run client
 - React
 - Redux
 
-Click [here](https://mighty-island-69251.herokuapp.com/) to check out the deployed app
+Click [here](https://mighty-island-69251.herokuapp.com/) to check out the deployed app!
 
 ### Author
 
