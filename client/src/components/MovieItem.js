@@ -3,14 +3,16 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addFavourite, deleteFavourite } from "../actions/favouriteActions";
-import { Button } from "reactstrap";
+import { Button, Badge } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class MovieItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isInFavourite: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      alreadyFavourited: false
     };
   }
 
@@ -21,12 +23,23 @@ class MovieItem extends Component {
     } else {
       this.setState({ isLoggedIn: false });
     }
+
+    const alreadyFavourited = this.props.favourites.find(
+      movie => movie.id === this.props.itemID
+    );
+
+    if (alreadyFavourited) {
+      this.setState({ alreadyFavourited: true });
+    } else {
+      this.setState({ alreadyFavourited: false });
+    }
   }
 
   addToFavourites = (e, movie) => {
     e.persist();
     const user = this.props.auth.user.id;
     this.props.addFavourite(movie, user);
+    this.setState({ alreadyFavourited: true });
   };
 
   deleteFromFavourites = (e, itemID) => {
@@ -77,7 +90,24 @@ class MovieItem extends Component {
               </div>
             </NavLink>
 
-            {!this.state.isInFavourite && this.state.isLoggedIn ? (
+            {!this.state.isInFavourite &&
+            this.state.isLoggedIn &&
+            this.state.alreadyFavourited ? (
+              <div className="movieCardFavouriteAction">
+                <Badge
+                  style={{
+                    fontSize: "1rem",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center"
+                  }}
+                  color="danger"
+                >
+                  Favourited
+                  <FontAwesomeIcon style={{ marginLeft: 5 }} icon="heart" />
+                </Badge>{" "}
+              </div>
+            ) : !this.state.isInFavourite && this.state.isLoggedIn ? (
               <div className="movieCardFavouriteAction">
                 <Button
                   outline
@@ -121,11 +151,15 @@ MovieItem.propTypes = {
   itemOverview: PropTypes.string.isRequired,
   itemPosterPath: PropTypes.string,
   itemReleaseDate: PropTypes.string.isRequired,
-  itemTitle: PropTypes.string.isRequired
+  itemTitle: PropTypes.string.isRequired,
+  favourites: PropTypes.array.isRequired
+  // movies: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  // movies: state.movies.movies,
+  favourites: state.favourites.favourites
 });
 
 export default connect(

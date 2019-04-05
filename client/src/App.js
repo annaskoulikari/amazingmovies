@@ -18,10 +18,11 @@ import {
   faFilm,
   faTv,
   faUsers,
-  faArrowLeft
+  faArrowLeft,
+  faHeart
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faFilm, faTv, faUsers, faArrowLeft);
+library.add(faFilm, faTv, faUsers, faArrowLeft, faHeart);
 
 class App extends Component {
   componentDidMount() {

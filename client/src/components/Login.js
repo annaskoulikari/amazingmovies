@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../actions/authActions";
 import { clearErrors } from "../actions/errorActions";
+import { getFavourites } from "../actions/favouriteActions";
 
 class Login extends Component {
   constructor(props) {
@@ -26,8 +27,11 @@ class Login extends Component {
       }
     }
     // if authenticated redirect to homepage
+
     if (isAuthenticated) {
+      const userLoggedIn = this.props.user.id;
       this.props.clearErrors();
+      this.props.getFavourites(userLoggedIn);
       this.props.history.push("/");
     }
   }
@@ -96,15 +100,18 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool,
   error: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired
+  clearErrors: PropTypes.func.isRequired,
+  getFavourites: PropTypes.func.isRequired,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
+  user: state.auth.user
 });
 
 export default connect(
   mapStateToProps,
-  { login, clearErrors }
+  { login, clearErrors, getFavourites }
 )(Login);

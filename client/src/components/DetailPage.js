@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+import { Button, Badge } from "reactstrap";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addFavourite } from "../actions/favouriteActions";
@@ -12,7 +12,8 @@ class DetailPage extends Component {
     this.state = {
       isLoggedIn: false,
       itemIdentifier: "",
-      item: {}
+      item: {},
+      alreadyFavourited: false
     };
   }
 
@@ -33,6 +34,16 @@ class DetailPage extends Component {
       this.setState({ item: this.props.location.state.person });
     }
     if (this.props.location.state.itemIdentifier === "movie") {
+      const alreadyFavourited = this.props.favourites.find(
+        movie => movie.id === this.props.location.state.movie.itemID
+      );
+
+      if (alreadyFavourited) {
+        this.setState({ alreadyFavourited: true });
+      } else {
+        this.setState({ alreadyFavourited: false });
+      }
+
       this.setState({ item: this.props.location.state.movie });
     }
   }
@@ -137,7 +148,25 @@ class DetailPage extends Component {
               <div className="detailPageOverview">
                 {this.state.item.itemOverview}
                 <div className="detailPageAddFavourite">
-                  {this.state.isLoggedIn ? (
+                  {this.state.isLoggedIn && this.state.alreadyFavourited ? (
+                    <div>
+                      <Badge
+                        style={{
+                          fontSize: "1rem",
+                          height: "100%",
+                          display: "flex",
+                          alignItems: "center"
+                        }}
+                        color="danger"
+                      >
+                        Favourited
+                        <FontAwesomeIcon
+                          style={{ marginLeft: 5 }}
+                          icon="heart"
+                        />
+                      </Badge>{" "}
+                    </div>
+                  ) : this.state.isLoggedIn ? (
                     <Button
                       outline
                       color="danger"
@@ -162,11 +191,13 @@ class DetailPage extends Component {
 
 DetailPage.propTypes = {
   addFavourite: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  favourites: PropTypes.array
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  favourites: state.favourites.favourites
 });
 
 export default connect(
